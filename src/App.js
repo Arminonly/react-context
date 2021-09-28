@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import Toolbar from './Examples/toolBar'
+import Lesson from './Examples/lesson'
+import MainContent from './useContext/mainContext'
+import MyContext from './useContext/context'
+import MainComponent from './Examples/component/mainComponent'
 
-function App() {
+export default function App() {
+  const sayHi = () => alert('Say hi')
+  const goodBye = () => alert('Say good bye')
+  const firstComponent = () => alert('firstComponent buton pressed')
+  const secondComponent = () => alert('secondComponent buton pressed')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <MyContext.Provider
+      value={{
+        firstComponent,
+        secondComponent,
+        sayHi,
+        goodBye,
+        text:"Component A text",
+        info:{
+          name:'Tom',
+          age:40
+        },
+        color:{
+          first:'success',
+          second:'info'
+        }
+      }}
+    >
+      <div className="App">
+        <h3>React Context Example</h3>
+        <hr />
+        <Toolbar theme="warning" />
+        <hr />
+        <Lesson />
+        <hr />
+        <MainContent />
+        <hr />
+        <MainComponent/>
+      </div>
+    </MyContext.Provider>
+  )
 }
-
-export default App;
